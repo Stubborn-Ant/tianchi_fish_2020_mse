@@ -5,7 +5,7 @@ import datetime
 
 
 def run(env, dbname, table_name):
-    data_dir = r'data\hy_round1_train_20200102'
+    data_dir = r'../data\hy_round1_train_20200102'
     files = os.listdir(data_dir)
     insert_sql = """
     insert into {}(id,x,y,speed,direction,time,type) 
@@ -24,6 +24,7 @@ def run(env, dbname, table_name):
                     row[-2] = datetime.datetime.strptime(row[-2], '%m%d %H:%M:%S')
                     row_list.append(row)
         msh.save_datas(env, dbname, insert_sql, row_list)
+        print('{}转储成功'.format(fname))
 
 
 if __name__ == '__main__':
